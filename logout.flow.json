@@ -128,7 +128,7 @@
   ],
   "delayBetweenSteps": 0,
   "beforeAllScript": "var username = \"{{random.string}}\";\nvar password = \"{{random.string}}\";\nvar name = \"{{random.firstName}}\";\nvar surname = \"{{random.lastName}}\";\nvar age = \"{{random.number(25,40)}}\";\nvar location = \"{{random.city}}\";\n\nvar res = await fetch(\"http://localhost:8091/register\", {\n  method: \"POST\",\n  headers: { \"Content-Type\": \"application/json\" },\n  body: JSON.stringify({ username, password, name, surname, age, location }),\n});\n\nat.flow.set(\"username\", username);\nat.flow.set(\"password\", password);",
-  "afterAllScript": "",
+  "afterAllScript": "var json = at.export.json();\nawait fetch(\"http://localhost:9999/documents/json\", {\n  method: \"POST\",\n  headers: { \"Content-Type\": \"application/json\" },\n  body: json,\n});\nconsole.log(\"JSON report sent:\", json.length, \"bytes\");\n\nvar html = at.export.html();\nawait fetch(\"http://localhost:9999/documents/html\", {\n  method: \"POST\",\n  headers: { \"Content-Type\": \"text/html\" },\n  body: html,\n});\nconsole.log(\"HTML report sent:\", html.length, \"bytes\");\n\nvar pdf = await at.export.pdf();\nawait fetch(\"http://localhost:9999/documents/pdf\", {\n  method: \"POST\",\n  headers: { \"Content-Type\": \"application/pdf\" },\n  body: pdf,\n});\nconsole.log(\"PDF report sent:\", pdf.length, \"bytes\");\n",
   "createdAt": 1777815797050,
   "fileId": "CDxPtAWFZzMlur6XpiIvJf00UzUHKVyGBP3yhBgrCv4KSSqQGbChv0/z2MMwxr6cszJBBfTtUxqmwAF8ADc0sDNrlLnYXfj6nbc8KBZTSP+apDY1gbNrX0fZUlsM5q8J"
 }
