@@ -1,0 +1,22 @@
+# Atrahasis auto-generated .gitignore
+# Only track managed files
+
+# Ignore everything by default
+*
+
+# Allow spec files
+!*.spec.json
+
+# Allow flow files
+!*.flow.json
+
+# Allow environment files
+!environments.json
+
+# Allow subdirectories (so nested files work)
+!*/
+
+# Always ignore these
+*.results/
+.results/
+vault-connections.json
