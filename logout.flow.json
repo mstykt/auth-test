@@ -1,0 +1,134 @@
+{
+  "id": "a78e5c5b-ak0d-3067-19c1-e0c2d5684102",
+  "name": "logout",
+  "steps": [
+    {
+      "id": "9243b544-ac2d-4c54-81a3-48981d533b3f",
+      "name": "Login",
+      "enabled": true,
+      "method": "POST",
+      "url": "http://localhost:8091/login",
+      "bodyType": "json",
+      "requestBody": "{\n  \"username\":\"{{flow.username}}\",\n  \"password\":\"{{flow.password}}\"\n}",
+      "headers": [],
+      "params": [],
+      "vars": [],
+      "formData": [],
+      "urlencodedData": [],
+      "auth": {
+        "type": "none"
+      },
+      "assertions": [
+        {
+          "id": "6929a46e-45d0-4e09-a9ff-deac461eaf3e",
+          "enabled": true,
+          "type": "status",
+          "operator": "equals",
+          "expected": 200
+        }
+      ],
+      "assertionsEnabled": true,
+      "postScript": "var body = at.response.json();\nat.flow.set(\"token\", body.token);"
+    },
+    {
+      "id": "cc264cb2-d4f8-45e8-968a-5b25c388c647",
+      "name": "Validate",
+      "enabled": true,
+      "method": "GET",
+      "url": "http://localhost:8091/validate",
+      "bodyType": "none",
+      "headers": [],
+      "params": [],
+      "vars": [],
+      "formData": [],
+      "urlencodedData": [],
+      "auth": {
+        "type": "bearer",
+        "bearer": {
+          "token": "{{flow.token}}"
+        }
+      },
+      "assertions": [
+        {
+          "id": "128989fa-fec1-407a-9fa6-5d7a87d1397f",
+          "enabled": true,
+          "type": "status",
+          "operator": "equals",
+          "expected": 200
+        }
+      ],
+      "assertionsEnabled": true
+    },
+    {
+      "id": "ef7ae6bd-2631-4b8c-8c82-84e59a2c99b7",
+      "name": "Get User",
+      "enabled": true,
+      "method": "GET",
+      "url": "http://localhost:8091/users/{{flow.username}}",
+      "bodyType": "none",
+      "headers": [],
+      "params": [],
+      "vars": [],
+      "formData": [],
+      "urlencodedData": [],
+      "auth": {
+        "type": "bearer",
+        "bearer": {
+          "token": "{{flow.token}}"
+        }
+      },
+      "assertions": [
+        {
+          "id": "77b6c490-9b91-40f6-94af-57e7b5a16d1b",
+          "enabled": true,
+          "type": "status",
+          "operator": "equals",
+          "expected": 200
+        },
+        {
+          "id": "e0af4e06-bb0d-4c26-93f0-3ab94966f5d4",
+          "enabled": true,
+          "type": "json_path",
+          "operator": "equals",
+          "expected": "{{flow.username}}",
+          "property": "$.username"
+        }
+      ],
+      "assertionsEnabled": true
+    },
+    {
+      "id": "e9ea150f-5583-4e45-a254-f5168660971f",
+      "name": "Logout",
+      "enabled": true,
+      "method": "POST",
+      "url": "http://localhost:8091/logout",
+      "bodyType": "none",
+      "headers": [],
+      "params": [],
+      "vars": [],
+      "formData": [],
+      "urlencodedData": [],
+      "auth": {
+        "type": "bearer",
+        "bearer": {
+          "token": "{{flow.token}}"
+        }
+      },
+      "assertions": [
+        {
+          "id": "ab254157-84e7-41e7-9572-9833d683d501",
+          "enabled": true,
+          "type": "status",
+          "operator": "equals",
+          "expected": 200
+        }
+      ],
+      "assertionsEnabled": true
+    }
+  ],
+  "delayBetweenSteps": 0,
+  "beforeAllScript": "var username = \"{{random.string}}\";\nvar password = \"{{random.string}}\";\nvar name = \"{{random.firstName}}\";\nvar surname = \"{{random.lastName}}\";\nvar age = \"{{random.number(25,40)}}\";\nvar location = \"{{random.city}}\";\n\nvar res = await fetch(\"http://localhost:8091/register\", {\n  method: \"POST\",\n  headers: { \"Content-Type\": \"application/json\" },\n  body: JSON.stringify({ username, password, name, surname, age, location }),\n});\n\nat.flow.set(\"username\", username);\nat.flow.set(\"password\", password);",
+  "afterAllScript": "",
+  "createdAt": 1777815797050,
+  "fileId": "CDxPtAWFZzMlur6XpiIvJf00UzUHKVyGBP3yhBgrCv4KSSqQGbChv0/z2MMwxr6cszJBBfTtUxqmwAF8ADc0sDNrlLnYXfj6nbc8KBZTSP+apDY1gbNrX0fZUlsM5q8J"
+}
