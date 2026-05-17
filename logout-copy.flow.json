@@ -9,7 +9,7 @@
       "method": "POST",
       "url": "http://localhost:8091/register",
       "bodyType": "json",
-      "requestBody": "{\n  \"username\": \"{{username}}\",\n  \"password\": \"{{password}}\",\n  \"name\": \"{{random.firstName}}\",\n  \"surname\": \"{{random.lastName}}\",\n  \"age\": {{random.number(25,40)}},\n  \"location\": \"{{random.city}}\"\n}",
+      "requestBody": "{\n  \"username\": \"{{random.string}}\",\n  \"password\": \"{{random.string}}\",\n  \"name\": \"{{random.firstName}}\",\n  \"surname\": \"{{random.lastName}}\",\n  \"age\": {{random.number(25,40)}},\n  \"location\": \"{{random.city}}\"\n}",
       "headers": [],
       "params": [],
       "vars": [],
@@ -25,8 +25,8 @@
         }
       ],
       "assertionsEnabled": true,
-      "preScript": "at.environment.set(\"username\", {{random.string}});\nat.environment.set(\"password\", {{random.string}});",
-      "postScript": "var body = JSON.parse(at.request.body);\n\nconsole.log(\"username: \", body.username);\nconsole.log(\"password: \", body.password);\n\n//at.flow.set(\"username\", body.username);\n//at.flow.set(\"password\", body.password);"
+      "preScript": "//at.environment.set(\"username\", {{random.string}});\n//at.environment.set(\"password\", {{random.string}});",
+      "postScript": "var body = JSON.parse(at.request.body);\n\nconsole.log(\"username: \", body.username);\nconsole.log(\"password: \", body.password);\n\nat.environment.set(\"username\", body.username);\nat.environment.set(\"password\", body.password);"
     },
     {
       "id": "9243b544-ac2d-4c54-81a3-48981d533b3f",
