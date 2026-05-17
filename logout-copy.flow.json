@@ -9,7 +9,7 @@
       "method": "POST",
       "url": "http://localhost:8091/register",
       "bodyType": "json",
-      "requestBody": "{\n  \"username\": \"{{flow.username}}\",\n  \"password\": \"{{flow.password}}\",\n  \"name\": \"{{random.firstName}}\",\n  \"surname\": \"{{random.lastName}}\",\n  \"age\": {{random.number(25,40)}},\n  \"location\": \"{{random.city}}\"\n}",
+      "requestBody": "{\n  \"username\": \"{{username}}\",\n  \"password\": \"{{password}}\",\n  \"name\": \"{{random.firstName}}\",\n  \"surname\": \"{{random.lastName}}\",\n  \"age\": {{random.number(25,40)}},\n  \"location\": \"{{random.city}}\"\n}",
       "headers": [],
       "params": [],
       "vars": [],
@@ -25,7 +25,7 @@
         }
       ],
       "assertionsEnabled": true,
-      "preScript": "at.flow.set(\"username\", {{random.string}});\nat.flow.set(\"password\", {{random.string}});",
+      "preScript": "at.environment.set(\"username\", {{random.string}});\nat.environment.set(\"password\", {{random.string}});",
       "postScript": "var body = JSON.parse(at.request.body);\n\nconsole.log(\"username: \", body.username);\nconsole.log(\"password: \", body.password);\n\n//at.flow.set(\"username\", body.username);\n//at.flow.set(\"password\", body.password);"
     },
     {
@@ -35,7 +35,7 @@
       "method": "POST",
       "url": "http://localhost:8091/login",
       "bodyType": "json",
-      "requestBody": "{\n  \"username\":\"{{flow.username}}\",\n  \"password\":\"{{flow.password}}\"\n}",
+      "requestBody": "{\n  \"username\":\"{{username}}\",\n  \"password\":\"{{password}}\"\n}",
       "headers": [],
       "params": [],
       "vars": [],
@@ -54,7 +54,7 @@
         }
       ],
       "assertionsEnabled": true,
-      "postScript": "var body = at.response.json();\nat.flow.set(\"token\", body.token);"
+      "postScript": "var body = at.response.json();\nat.environment.set(\"token\", body.token);"
     },
     {
       "id": "cc264cb2-d4f8-45e8-968a-5b25c388c647",
@@ -71,7 +71,7 @@
       "auth": {
         "type": "bearer",
         "bearer": {
-          "token": "{{flow.token}}"
+          "token": "{{token}}"
         }
       },
       "assertions": [
@@ -90,7 +90,7 @@
       "name": "Get User",
       "enabled": true,
       "method": "GET",
-      "url": "http://localhost:8091/users/{{flow.username}}",
+      "url": "http://localhost:8091/users/{{username}}",
       "bodyType": "none",
       "headers": [],
       "params": [],
@@ -100,7 +100,7 @@
       "auth": {
         "type": "bearer",
         "bearer": {
-          "token": "{{flow.token}}"
+          "token": "{{token}}"
         }
       },
       "assertions": [
@@ -116,7 +116,7 @@
           "enabled": true,
           "type": "json_path",
           "operator": "equals",
-          "expected": "{{flow.username}}",
+          "expected": "{{username}}",
           "property": "$.username"
         }
       ],
@@ -137,7 +137,7 @@
       "auth": {
         "type": "bearer",
         "bearer": {
-          "token": "{{flow.token}}"
+          "token": "{{token}}"
         }
       },
       "assertions": [
