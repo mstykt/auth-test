@@ -3,6 +3,31 @@
   "name": "logout-copy",
   "steps": [
     {
+      "id": "a2126b5d-f793-4aef-9b6a-91f2e49404ad",
+      "name": "Register",
+      "enabled": true,
+      "method": "POST",
+      "url": "http://localhost:8091/register",
+      "bodyType": "json",
+      "requestBody": "{\n  \"username\": \"{{random.string}}\",\n  \"password\": \"{{random.string}}\",\n  \"name\": \"{{random.firstName}}\",\n  \"surname\": \"{{random.lastName}}\",\n  \"age\": {{random.number(25,40)}},\n  \"location\": \"{{random.city}}\"\n}",
+      "headers": [],
+      "params": [],
+      "vars": [],
+      "formData": [],
+      "urlencodedData": [],
+      "assertions": [
+        {
+          "id": "b6083f3f-497d-45cd-b1b1-1a821a9518d8",
+          "enabled": true,
+          "type": "status",
+          "operator": "equals",
+          "expected": 201
+        }
+      ],
+      "assertionsEnabled": true,
+      "postScript": "var body = JSON.parse(at.request.body);\n\nconsole.log(\"username: \", body.username);\nconsole.log(\"password: \", body.password);\n\nat.flow.set(\"username\", body.username);\nat.flow.set(\"password\", body.password);"
+    },
+    {
       "id": "9243b544-ac2d-4c54-81a3-48981d533b3f",
       "name": "Login",
       "enabled": true,
@@ -28,8 +53,7 @@
         }
       ],
       "assertionsEnabled": true,
-      "postScript": "var body = at.response.json();\nat.flow.set(\"token\", body.token);",
-      "preScript": "var username = \"{{random.string}}\";\nvar password = \"{{random.string}}\";\nvar name = \"{{random.firstName}}\";\nvar surname = \"{{random.lastName}}\";\nvar age = \"{{random.number(25,40)}}\";\nvar location = \"{{random.city}}\";\n\nvar res = await fetch(\"http://localhost:8091/register\", {\n  method: \"POST\",\n  headers: { \"Content-Type\": \"application/json\" },\n  body: JSON.stringify({ username, password, name, surname, age, location }),\n});\n\nat.flow.set(\"username\", username);\nat.flow.set(\"password\", password);"
+      "postScript": "var body = at.response.json();\nat.flow.set(\"token\", body.token);"
     },
     {
       "id": "cc264cb2-d4f8-45e8-968a-5b25c388c647",
