@@ -1,0 +1,26 @@
+[
+  {
+    "id": "018edad6-eabb-4536-8aa9-be12b2f31873",
+    "name": "dev",
+    "variables": [
+      {
+        "key": "username",
+        "value": "EbrXseuNJH",
+        "enabled": true,
+        "secret": false
+      },
+      {
+        "key": "password",
+        "value": "ZKfblNNhaD",
+        "enabled": true,
+        "secret": false
+      },
+      {
+        "key": "token",
+        "value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiI0ZGZmZGIzNi05ZWM4LTRmYWEtOGZmZC0xY2RjYjg2YWEwMjQiLCJzdWIiOiJFYnJYc2V1TkpIIiwiZXhwIjoxNzc5MDU1MTQxfQ.nWtRE9g0xO8mpp5kdLdb9x54G4IgNBGefJ_rbfSLvDtB9ld6pMXHZAyxv84Hy_3rJViVleju-q0du8GsG7jhuw",
+        "enabled": true,
+        "secret": false
+      }
+    ]
+  }
+]
