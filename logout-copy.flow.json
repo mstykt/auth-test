@@ -28,7 +28,8 @@
         }
       ],
       "assertionsEnabled": true,
-      "postScript": "var body = at.response.json();\nat.flow.set(\"token\", body.token);"
+      "postScript": "var body = at.response.json();\nat.flow.set(\"token\", body.token);",
+      "preScript": "var username = \"{{random.string}}\";\nvar password = \"{{random.string}}\";\nvar name = \"{{random.firstName}}\";\nvar surname = \"{{random.lastName}}\";\nvar age = \"{{random.number(25,40)}}\";\nvar location = \"{{random.city}}\";\n\nvar res = await fetch(\"http://localhost:8091/register\", {\n  method: \"POST\",\n  headers: { \"Content-Type\": \"application/json\" },\n  body: JSON.stringify({ username, password, name, surname, age, location }),\n});\n\nat.flow.set(\"username\", username);\nat.flow.set(\"password\", password);"
     },
     {
       "id": "cc264cb2-d4f8-45e8-968a-5b25c388c647",
@@ -127,7 +128,7 @@
     }
   ],
   "delayBetweenSteps": 0,
-  "beforeAllScript": "var username = \"{{random.string}}\";\nvar password = \"{{random.string}}\";\nvar name = \"{{random.firstName}}\";\nvar surname = \"{{random.lastName}}\";\nvar age = \"{{random.number(25,40)}}\";\nvar location = \"{{random.city}}\";\n\nvar res = await fetch(\"http://localhost:8091/register\", {\n  method: \"POST\",\n  headers: { \"Content-Type\": \"application/json\" },\n  body: JSON.stringify({ username, password, name, surname, age, location }),\n});\n\nat.flow.set(\"username\", username);\nat.flow.set(\"password\", password);",
+  "beforeAllScript": "",
   "afterAllScript": "",
   "createdAt": 1778891592510,
   "fileId": "ERobcBzZ3QY4/9MBShFtYPXP2/dEIcPQSfcXqSzpk6x0WIAg+YXNqTmjdwNvszKDly5WKwQuHMkMChD6GHNwSw4B0OHoV0YEgdWY7tAChclberIEv+ozFeerCcQS00QJ"
