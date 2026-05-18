@@ -5,19 +5,19 @@
     "variables": [
       {
         "key": "username",
-        "value": "EbrXseuNJH",
+        "value": "FZJnZRelol",
         "enabled": true,
         "secret": false
       },
       {
         "key": "password",
-        "value": "ZKfblNNhaD",
+        "value": "LIzfZNPXmh",
         "enabled": true,
         "secret": false
       },
       {
         "key": "token",
-        "value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiI0ZGZmZGIzNi05ZWM4LTRmYWEtOGZmZC0xY2RjYjg2YWEwMjQiLCJzdWIiOiJFYnJYc2V1TkpIIiwiZXhwIjoxNzc5MDU1MTQxfQ.nWtRE9g0xO8mpp5kdLdb9x54G4IgNBGefJ_rbfSLvDtB9ld6pMXHZAyxv84Hy_3rJViVleju-q0du8GsG7jhuw",
+        "value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJiMmFmZjlkYy0yMjRlLTQyOGEtYjBiOS0xMmE3M2E3Mjc3NTAiLCJzdWIiOiJGWkpuWlJlbG9sIiwiZXhwIjoxNzc5MDYzODA2fQ.xqWNHsc5qAUJmi9SrkhHFgnjC-w1MhaCsVEo1d-LiniGAaL9UqDA0Vm5i0WxlPqhjz8fw4WSdkkmKxmuRhCAhg",
         "enabled": true,
         "secret": false
       }
