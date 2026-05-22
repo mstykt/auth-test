@@ -4,22 +4,16 @@
     "name": "dev",
     "variables": [
       {
-        "key": "username",
-        "value": "FZJnZRelol",
+        "key": "base_url",
+        "value": "",
         "enabled": true,
-        "secret": false
-      },
-      {
-        "key": "password",
-        "value": "LIzfZNPXmh",
-        "enabled": true,
-        "secret": false
-      },
-      {
-        "key": "token",
-        "value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJiMmFmZjlkYy0yMjRlLTQyOGEtYjBiOS0xMmE3M2E3Mjc3NTAiLCJzdWIiOiJGWkpuWlJlbG9sIiwiZXhwIjoxNzc5MDYzODA2fQ.xqWNHsc5qAUJmi9SrkhHFgnjC-w1MhaCsVEo1d-LiniGAaL9UqDA0Vm5i0WxlPqhjz8fw4WSdkkmKxmuRhCAhg",
-        "enabled": true,
-        "secret": false
+        "secret": false,
+        "source": "vault",
+        "vaultConfig": {
+          "connectionName": "my-vault",
+          "path": "secret/data/base_url",
+          "key": "base_url"
+        }
       }
     ]
   }
