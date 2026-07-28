@@ -5,15 +5,27 @@
     "variables": [
       {
         "key": "base_url",
-        "value": "",
+        "value": "https://eagle-publication-significant-dna.trycloudflare.com",
         "enabled": true,
-        "secret": false,
-        "source": "vault",
-        "vaultConfig": {
-          "connectionName": "my-vault",
-          "path": "secret/data/base_url",
-          "key": "base_url"
-        }
+        "secret": false
+      },
+      {
+        "key": "name",
+        "value": "denemeeeee",
+        "enabled": true,
+        "secret": false
+      },
+      {
+        "key": "username",
+        "value": "pORvupUFRW",
+        "enabled": true,
+        "secret": false
+      },
+      {
+        "key": "password",
+        "value": "nCZQjJzOoo",
+        "enabled": true,
+        "secret": false
       }
     ]
   }

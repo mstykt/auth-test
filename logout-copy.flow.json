@@ -33,9 +33,9 @@
       "name": "Login",
       "enabled": true,
       "method": "POST",
-      "url": "http://localhost:8091/login",
+      "url": "{{base_url}}/login",
       "bodyType": "json",
-      "requestBody": "{\n  \"username\":\"{{username}}\",\n  \"password\":\"{{password}}\"\n}",
+      "requestBody": "{\n  \"username\":\"{{flow.username}}\",\n  \"password\":\"{{flow.password}}\"\n}",
       "headers": [],
       "params": [],
       "vars": [],
@@ -54,7 +54,8 @@
         }
       ],
       "assertionsEnabled": true,
-      "postScript": "var body = at.response.json();\nat.environment.set(\"token\", body.token);"
+      "postScript": "var body = at.response.json();\nat.flow.set(\"token\", body.token);",
+      "preScript": "var username = \"{{random.string}}\";\nvar password = \"{{random.string}}\";\nvar name = at.environment.get(\"name\");\nvar surname = \"{{random.lastName}}\";\nvar age = \"{{random.number(25,40)}}\";\nvar location = \"{{random.city}}\";\n\nvar res = await fetch(at.environment.get(\"base_url\") + \"/register\", {\n  method: \"POST\",\n  headers: { \"Content-Type\": \"application/json\" },\n  body: JSON.stringify({ username, password, name, surname, age, location }),\n});\n\nat.flow.set(\"username\", username);\nat.flow.set(\"password\", password);"
     },
     {
       "id": "cc264cb2-d4f8-45e8-968a-5b25c388c647",
@@ -71,7 +72,7 @@
       "auth": {
         "type": "bearer",
         "bearer": {
-          "token": "{{token}}"
+          "token": "{{flow.token}}"
         }
       },
       "assertions": [
@@ -90,7 +91,7 @@
       "name": "Get User",
       "enabled": true,
       "method": "GET",
-      "url": "http://localhost:8091/users/{{username}}",
+      "url": "http://localhost:8091/users/{{flow.username}}",
       "bodyType": "none",
       "headers": [],
       "params": [],
@@ -100,7 +101,7 @@
       "auth": {
         "type": "bearer",
         "bearer": {
-          "token": "{{token}}"
+          "token": "{{flow.token}}"
         }
       },
       "assertions": [
@@ -116,7 +117,7 @@
           "enabled": true,
           "type": "json_path",
           "operator": "equals",
-          "expected": "{{username}}",
+          "expected": "{{flow.username}}",
           "property": "$.username"
         }
       ],
@@ -137,7 +138,7 @@
       "auth": {
         "type": "bearer",
         "bearer": {
-          "token": "{{token}}"
+          "token": "{{flow.token}}"
         }
       },
       "assertions": [
