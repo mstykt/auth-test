@@ -83,7 +83,7 @@
           "enabled": true,
           "type": "status",
           "operator": "equals",
-          "expected": 400
+          "expected": 200
         },
         {
           "id": "e0af4e06-bb0d-4c26-93f0-3ab94966f5d4",

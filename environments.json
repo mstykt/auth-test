@@ -5,9 +5,10 @@
     "variables": [
       {
         "key": "base_url",
-        "value": "https://column-groundwater-bee-modular.trycloudflare.com",
+        "value": "",
         "enabled": true,
-        "secret": false
+        "secret": true,
+        "source": "os"
       },
       {
         "key": "name",
