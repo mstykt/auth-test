@@ -26,8 +26,8 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Atrahasis Action Test
-  # You may pin to the exact commit or the version.
-  # uses: atrahasisdev/atrahasis-action-test@53e6427c3cc8583748b5625eb34c2859ca80a95b
+        env:
+          base_url: ${{ secrets.BASE_URL }}
         uses: atrahasisdev/atrahasis-action-test@v1.0.0
         with:
     # Arguments passed verbatim to the atra CLI. Examples: 'GET https://api.example.com -a "status eq 200"', 'run auth-flows -f logout-flow -p 2 -c', 'run user-specs -t stress'.
